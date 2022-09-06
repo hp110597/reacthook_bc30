@@ -6,17 +6,43 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import UseStateDemo from "./pages/HookDemo/UseStateDemo/UseStateDemo";
 import UseEffectDemo from "./pages/HookDemo/UseEffectDemo/UseEffectDemo";
+import UseCallBackDemo from "./pages/HookDemo/UseCallBackDemo/UseCallBackDemo";
+import UseMemoDemo from "./pages/HookDemo/UseMemoDemo/UseMemoDemo";
+import UseRefDemo from "./pages/HookDemo/UseRefDemo/UseRefDemo";
+import { Provider } from "react-redux";
+import { store } from "./redux/configStore";
+import DemoNumber from "./pages/HookDemo/UseReduxDemo/DemoNumber/DemoNumber";
+import DemoFaceBookApp from "./pages/HookDemo/UseReduxDemo/DemoFaceBookApp/DemoFaceBookApp";
+import LoginDemo from "./pages/HookDemo/UseHookRouter/LoginDemo/LoginDemo";
+import Home from "./pages/HookDemo/UseHookRouter/DemoUseParams/Home";
+import Detail from "./pages/HookDemo/UseHookRouter/DemoUseParams/Detail";
+import DemoUseSearchParams from "./pages/HookDemo/UseHookRouter/DemoUseSearchParams/DemoUseSearchParams";
+import DemoUseRoute from "./pages/HookDemo/CustomHooks/DemoUseRoute";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="" element={<App/>}>
-          <Route path="usestate" element={<UseStateDemo/>}></Route>
-          <Route path="useeffect" element={<UseEffectDemo/>}></Route>
-      </Route>
-    </Routes>
-  </BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <Routes>
+        <Route path="" element={<App />}>
+          <Route index element={<Home />}></Route>
+          <Route path="detail" >
+            <Route path=":id" element={<Detail/>}></Route>
+          </Route>
+          <Route path="search" element={<DemoUseSearchParams />}></Route>
+          <Route path="usestate" element={<UseStateDemo />}></Route>
+          <Route path="customhook" element={<DemoUseRoute/>}></Route>
+          <Route path="useeffect" element={<UseEffectDemo />}></Route>
+          <Route path="usecallback" element={<UseCallBackDemo />}></Route>
+          <Route path="usememo" element={<UseMemoDemo />}></Route>
+          <Route path="useref" element={<UseRefDemo />}></Route>
+          <Route path="useredux" element={<DemoNumber />}></Route>
+          <Route path="reduxfbapp" element={<DemoFaceBookApp />}></Route>
+          <Route path="logindemo" element={<LoginDemo />}></Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
