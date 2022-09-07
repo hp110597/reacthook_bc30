@@ -29,6 +29,11 @@ export default function HeaderHome() {
                 Login
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/antd">
+                AntD demo
+              </NavLink>
+            </li>
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"

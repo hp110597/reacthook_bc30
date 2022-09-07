@@ -1,12 +1,13 @@
 import React from 'react'
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import {useNavigate, useParams, useSearchParams} from 'react-router-dom'
 
-export default function useRoutes() {
+export default function useRoutes(number) {
 
   const navigate = useNavigate()
   const [serach,setSearch]=useSearchParams()
   const params = useParams()
 
+  console.log(number);
 
 
 
