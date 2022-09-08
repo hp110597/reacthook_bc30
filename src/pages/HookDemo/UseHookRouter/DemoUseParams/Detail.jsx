@@ -1,25 +1,22 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 
 export default function Detail() {
-  const [productDetail, setProductDetail] = useState({});
+  // const [productDetail, setProductDetail] = useState({});
+  const {productDetail} = useSelector(state=>state.productReducer)
   const params = useParams();
   // console.log(params,'xuat params');
 
   console.log(productDetail);
   const getProductDetailApi = async () => {
     let { id } = params;
-    try {
-      let result = await axios({
-        url: `https://shop.cyberlearn.vn/api/Product/getbyid?id=${id}`,
-        method: "GET",
-      });
-      setProductDetail(result.data.content);
-    } catch (err) {
-      console.log(err);
-    }
+    //Dispatch action thunk
+    //Bước 1: Dispatch action thunk
+    const action = getProductDetailApi(id)
+    dispatch(action)
   };
   useEffect(() => {
     //call api

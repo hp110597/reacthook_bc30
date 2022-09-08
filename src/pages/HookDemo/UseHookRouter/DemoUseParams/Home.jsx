@@ -4,53 +4,24 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import { getProduct } from "../../../../redux/reducers/productReducer";
-
-
+import { getProduct, getProductApi } from "../../../../redux/reducers/productReducer";
 
 export default function Home() {
   // const [arrProduct, setArrProduct] = useState([]);
   //Sử dụng useSelector lấy dữ liệu từ redux về
-  const {arrProduct} = useSelector(state=>state.productReducer);
-  const dispatch = useDispatch()
+  const { arrProduct } = useSelector((state) => state.productReducer);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   //call api
-  const getAllProductApi = async ()=>{
-    try{
-      const result = await axios({
-        url:'https://shop.cyberlearn.vn/api/product',
-        method:'get'
-      })
-      //Sau khi lấy dữ liệu từ api => setState cho arrProduct
-      // setArrProduct(result.data.content)
-      /*
-        Dạng 1: action là object
-        action = {
-          type:'',
-          payload:''
-        }
-        Dạng 2: action là callback function
-        action = (dispatch2) =>{
-          //call api a
-          //call api b
-          action = {
-          type:'',
-          payload:''
-        }
-        dispatch2(action)
-        }
-       */
-      const action = getProduct(result.data.content)
-      dispatch(action)
-    }catch(err){
-      console.log(err);
-    }
-  }
+  const getAllProductApi = () => {
+    const actionThunk = getProductApi('abc')
+    dispatch(actionThunk);
+  };
 
-  useEffect(()=>{
-    getAllProductApi()
-  },[])
+  useEffect(() => {
+    getAllProductApi();
+  }, []);
 
   const renderProduct = () => {
     return arrProduct.map((item, index) => {
@@ -86,3 +57,21 @@ export default function Home() {
     </div>
   );
 }
+
+/*
+        Dạng 1: action là object
+        action = {
+          type:'',
+          payload:''
+        }
+        Dạng 2: action là callback function
+        action = (dispatch2) =>{
+          //call api a
+          //call api b
+          action = {
+          type:'',
+          payload:''
+        }
+        dispatch2(action)
+        }
+       */
