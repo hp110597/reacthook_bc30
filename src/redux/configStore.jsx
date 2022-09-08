@@ -1,6 +1,7 @@
 import {configureStore} from '@reduxjs/toolkit'
 import facebookReducer from './reducers/facebookReducer'
 import numberReducer from './reducers/numberReducer'
+import productReducer from './reducers/productReducer'
 
 
 
@@ -8,6 +9,7 @@ import numberReducer from './reducers/numberReducer'
 export const store = configureStore({
     reducer:{
         number:numberReducer,
-        facebookReducer:facebookReducer
+        facebookReducer:facebookReducer,
+        productReducer:productReducer
     }
 })
