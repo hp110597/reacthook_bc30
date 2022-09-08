@@ -11,17 +11,15 @@ export default function Detail() {
   // console.log(params,'xuat params');
 
   console.log(productDetail);
-  const getProductDetailApi = async () => {
+ 
+  useEffect(() => {
     let { id } = params;
     //Dispatch action thunk
     //Bước 1: Dispatch action thunk
     const action = getProductDetailApi(id)
     dispatch(action)
-  };
-  useEffect(() => {
-    //call api
-    getProductDetailApi();
-  }, []);
+
+  }, [params.id]);
   return (
     <div className="container">
       <h3>Params: Product - {params.id}</h3>
