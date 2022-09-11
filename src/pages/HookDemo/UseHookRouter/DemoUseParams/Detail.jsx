@@ -1,12 +1,14 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
+import { getProductDetailApi } from "../../../../redux/reducers/productReducer";
 
 export default function Detail() {
   // const [productDetail, setProductDetail] = useState({});
   const {productDetail} = useSelector(state=>state.productReducer)
+  const dispatch = useDispatch()
   const params = useParams();
   // console.log(params,'xuat params');
 

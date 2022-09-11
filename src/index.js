@@ -18,15 +18,19 @@ import Home from "./pages/HookDemo/UseHookRouter/DemoUseParams/Home";
 import Detail from "./pages/HookDemo/UseHookRouter/DemoUseParams/Detail";
 import DemoUseSearchParams from "./pages/HookDemo/UseHookRouter/DemoUseSearchParams/DemoUseSearchParams";
 import DemoUseRoute from "./pages/HookDemo/CustomHooks/DemoUseRoute";
-import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
 import AntdDemo from "./pages/AntdDemo/AntdDemo";
-import './assets/scss/styles.scss'
-
+import "./assets/scss/styles.scss";
+import Login from "./pages/Login/Login";
+import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
+import {createBrowserHistory} from 'history'
+//Cấu hình history (chuyển hướng ko cần hook navigate)
+export const history = createBrowserHistory({window})
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <HistoryRouter history={history}>
       <Routes>
         <Route path="" element={<App />}>
           <Route index element={<Home />}></Route>
@@ -35,8 +39,9 @@ root.render(
           </Route>
           <Route path="search" element={<DemoUseSearchParams />}></Route>
           <Route path="usestate" element={<UseStateDemo />}></Route>
+          <Route path="login" element={<Login />}></Route>
           <Route path="customhook" element={<DemoUseRoute />}></Route>
-          
+
           <Route path="useeffect" element={<UseEffectDemo />}></Route>
           <Route path="usecallback" element={<UseCallBackDemo />}></Route>
           <Route path="usememo" element={<UseMemoDemo />}></Route>
@@ -47,7 +52,7 @@ root.render(
           <Route path="antd" element={<AntdDemo />}></Route>
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   </Provider>
 );
 

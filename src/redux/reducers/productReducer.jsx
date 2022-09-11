@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
   arrProduct: [],
@@ -24,7 +25,7 @@ const productReducer = createSlice({
   },
 });
 // --------------------action:{type,payload}-------------
-export const { getProductAction } = productReducer.actions;
+export const { getProductAction,getProductDetailAction } = productReducer.actions;
 
 export default productReducer.reducer;
 
@@ -39,7 +40,7 @@ export const getProductApi = (abc) => {
         url: "https://shop.cyberlearn.vn/api/product",
         method: "get",
       });
-      const action = getProduct(result.data.content);
+      const action = getProductAction(result.data.content);
       dispatch(action);
     } catch (err) {
       console.log(err);
