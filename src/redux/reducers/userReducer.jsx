@@ -13,9 +13,11 @@ const userReducer = createSlice({
   reducers: {
     getProfileAction: (state,action)=>{
         state.userLogin = action.payload
+       
     }
   },
 });
+
 
 export const {getProfileAction} = userReducer.actions;
 
@@ -63,7 +65,8 @@ export const getProfileApi = (accessToken = getStore(ACCESS_TOKEN)) =>{
 
               //Lưu vào storage
               setStoreJson(USER_LOGIN,result.data.content)
-        }catch{
+        }catch (err){
+          console.log(err);
 
         }
     }

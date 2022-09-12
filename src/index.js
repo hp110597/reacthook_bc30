@@ -23,9 +23,10 @@ import AntdDemo from "./pages/AntdDemo/AntdDemo";
 import "./assets/scss/styles.scss";
 import Login from "./pages/Login/Login";
 import { unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
-import {createBrowserHistory} from 'history'
+import { createBrowserHistory } from "history";
+import Profile from "./pages/Profile/Profile";
 //Cấu hình history (chuyển hướng ko cần hook navigate)
-export const history = createBrowserHistory({window})
+export const history = createBrowserHistory({ window });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -40,6 +41,7 @@ root.render(
           <Route path="search" element={<DemoUseSearchParams />}></Route>
           <Route path="usestate" element={<UseStateDemo />}></Route>
           <Route path="login" element={<Login />}></Route>
+          <Route path="profile" element={<Profile />}></Route>
           <Route path="customhook" element={<DemoUseRoute />}></Route>
 
           <Route path="useeffect" element={<UseEffectDemo />}></Route>
