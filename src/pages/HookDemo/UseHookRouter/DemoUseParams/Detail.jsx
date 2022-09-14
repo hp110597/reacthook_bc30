@@ -10,9 +10,9 @@ export default function Detail() {
   const {productDetail} = useSelector(state=>state.productReducer)
   const dispatch = useDispatch()
   const params = useParams();
-  // console.log(params,'xuat params');
+  console.log(params,'xuat params');
 
-  console.log(productDetail);
+  // console.log(productDetail);
  
   useEffect(() => {
     let { id } = params;

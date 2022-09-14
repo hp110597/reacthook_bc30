@@ -34,7 +34,7 @@ export default productReducer.reducer;
 
 export const getProductApi = (abc) => {
   return async (dispatch) => {
-    console.log("abc", abc);
+    // console.log("abc", abc);
     try {
       const result = await axios({
         url: "https://shop.cyberlearn.vn/api/product",
@@ -57,6 +57,7 @@ export const addProductApi = () => {
 
 
 export const getProductDetailApi=(id)=>{
+  
   return async(dispatch)=>{
     //Bước 2 : thực thi thunk
     try {

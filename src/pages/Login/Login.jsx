@@ -6,9 +6,10 @@ import { loginApi } from "../../redux/reducers/userReducer";
 
 export default function Login(props) {
     const dispath = useDispatch()
-  console.log(123);
+  // console.log(123);
   //Lấy dữ liệu từ form
   const frm = useFormik({
+    
     initialValues: {
       //Dữ liệu ban đầu mặc định của form
       email: "",
@@ -24,6 +25,7 @@ export default function Login(props) {
     //   console.log(values);
     // const action = loginApi(values)
     dispath(loginApi(values))
+  
     },
   });
 

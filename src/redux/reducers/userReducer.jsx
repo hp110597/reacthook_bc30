@@ -57,13 +57,14 @@ export const getProfileApi = (accessToken = getStore(ACCESS_TOKEN)) =>{
                 method: "POST",
                 headers: { //header là các phần dữ liệu măc định gửi đi
                     Authorization:'Bearer '+ accessToken 
+                    //Authorization: lấy từ name của API 
                 },
               });
               //Lấy được thông tin profile đưa lên redux
               const action = getProfileAction(result.data.content)
               dispatch(action)
 
-              //Lưu vào storage
+              //Lưu vào storage để reload userlogin có thể lấy default từ store để không cần đăng nhập
               setStoreJson(USER_LOGIN,result.data.content)
         }catch (err){
           console.log(err);
