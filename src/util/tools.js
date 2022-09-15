@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const config = {
   setCookie: (name, value, days) => {
     var expires = "";
@@ -43,4 +45,27 @@ export const config = {
 
 export const { setCookie, getCookie,getStore,setStore,setStoreJson,getStoreJson,ACCESS_TOKEN,USER_LOGIN } = config;
 
+const DOMAIN = 'https://shop.cyberlearn.vn/api'
 
+// Cấu hình request cho tất cả api-response cho tất cả kết quả từ api trả về
+
+//Cấu hình domain gửi đi
+export const http = axios.create({
+  baseURL:DOMAIN,
+  timeout:30000 //timeout để hủy request, cho các request khác thực thi
+})
+
+
+http.interceptors.request.use(
+  config => {
+    const token = getStore(ACCESS_TOKEN)
+    if (token) {
+      config.headers['Authorization'] = 'Bearer ' + token
+    }
+    // config.headers['Content-Type'] = 'application/json';
+    return config
+  },
+  error => {
+    Promise.reject(error)
+  }
+)
