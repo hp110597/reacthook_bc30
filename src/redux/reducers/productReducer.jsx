@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { http } from "../../util/tools";
 
 const initialState = {
   arrProduct: [],
@@ -37,8 +36,10 @@ export const getProductApi = (abc) => {
   return async (dispatch) => {
     // console.log("abc", abc);
     try {
-      const result = await http.get('/product')
-    
+      const result = await axios({
+        url: "https://shop.cyberlearn.vn/api/product",
+        method: "get",
+      });
       const action = getProductAction(result.data.content);
       dispatch(action);
     } catch (err) {
