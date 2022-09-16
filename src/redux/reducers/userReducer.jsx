@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { history } from "../../index";
-import { setCookie, setStore,ACCESS_TOKEN, getStore, setStoreJson, USER_LOGIN, getStoreJson } from "../../util/tools";
+import { setCookie, setStore,ACCESS_TOKEN, getStore, setStoreJson, USER_LOGIN, getStoreJson, http } from "../../util/tools";
 
 const initialState = {
   userLogin: getStoreJson(USER_LOGIN), //Có thể null hoặc object
@@ -27,39 +27,28 @@ export const loginApi = (userLogin) => {
   //{email,password}
   return async (dispatch) => {
     try {
-      const result = await axios({
-        url: "https://shop.cyberlearn.vn/api/Users/signin",
-        method: "POST",
-        data: userLogin,
-      });
+      const result = await http.post('/Users/signin',userLogin)
       //Sau khi đăng nhập thành công => lưu dữ liệu vào local storage hoặc cookie
       console.log(result);
       setCookie(ACCESS_TOKEN,result.data.content.accessToken,30)
       setStore(ACCESS_TOKEN,result.data.content.accessToken)
       //Chuyển hướng về profile hoặc trang quên mật khẩu
-      history.push('./profile')
+      history.push('/profile')
       //Sau khi đăng nhập thành công thì dispatch action getProfile
       dispatch(getProfileApi())
 
     } catch (err) {
-        history.push('/home')
+        history.push('/')
       console.log(err);
     }
   };
 };
 
 
-export const getProfileApi = (accessToken = getStore(ACCESS_TOKEN)) =>{
+export const getProfileApi = () =>{
     return async dispatch =>{
         try {
-            const result = await axios({
-                url: "https://shop.cyberlearn.vn/api/users/getProfile",
-                method: "POST",
-                headers: { //header là các phần dữ liệu măc định gửi đi
-                    Authorization:'Bearer '+ accessToken 
-                    //Authorization: lấy từ name của API 
-                },
-              });
+            const result = await http.post('/Users/getProfile')
               //Lấy được thông tin profile đưa lên redux
               const action = getProfileAction(result.data.content)
               dispatch(action)

@@ -1,7 +1,9 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 import { getProfileApi } from "../../redux/reducers/userReducer";
+import { ACCESS_TOKEN, getStore } from "../../util/tools";
 
 export default function Profile() {
   const { userLogin } = useSelector((state) => state.userReducer);
@@ -9,7 +11,12 @@ export default function Profile() {
   useEffect(() => {
     //Khi trang vừa load lên thì gọi api => (dispatch lại getProfile api đã xâu dựng)
     dispatch(getProfileApi());
-  });
+  },[]);
+
+  // if(!getStore(ACCESS_TOKEN)){
+  //   alert('Đăng nhập để vào trang này')
+  //   return <Navigate to='/Login' />
+  // }
 
   return (
     <div className="container-fluid">

@@ -59,10 +59,7 @@ export const getProductDetailApi=(id)=>{
   return async(dispatch)=>{
     //Bước 2 : thực thi thunk
     try {
-      let result = await axios({
-        url: `https://shop.cyberlearn.vn/api/Product/getbyid?id=${id}`,
-        method: "GET",
-      }); 
+      let result = await http.get(`/Product/getbyid?id=${id}`) 
       //Sau khi lấy dữ liệu từ api thành công => đưa lên reducer
       // bằng hàm dispatch2 từ thunk
       //Bước 3: Sau khi có dữ liệu=> dispatch lần 2

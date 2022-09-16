@@ -52,6 +52,12 @@ export default function HeaderHome() {
               <NavLink className="nav-link" to="/antd">
                 AntD demo
               </NavLink>
+             
+            </li>
+            <li className="nav-item">
+            <NavLink className="nav-link" to="/hoc">
+                HOC demo
+              </NavLink>
             </li>
             <li className="nav-item dropdown">
               <a
