@@ -23,6 +23,7 @@ export default function Home() {
     getAllProductApi();
   }, []);
 
+  
   const renderProduct = () => {
     return arrProduct.map((item, index) => {
       return (

@@ -20,8 +20,8 @@ export default function Detail() {
     //Bước 1: Dispatch action thunk
     const action = getProductDetailApi(id)
     dispatch(action)
-
   }, [params.id]);
+  
   return (
     <div className="container">
       <h3>Params: Product - {params.id}</h3>

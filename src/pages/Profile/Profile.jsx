@@ -28,7 +28,7 @@ export default function Profile() {
           aria-orientation="vertical"
         >
           <div>
-            <img src={userLogin.avatar} alt="avatar" className="w-100" />
+            <img src={userLogin?.avatar} alt="avatar" className="w-100" />
           </div>
           <button
             className="nav-link active"
@@ -72,7 +72,7 @@ export default function Profile() {
             aria-labelledby="v-pills-history-tab"
           >
             
-            {userLogin.ordersHistory?.map((orderItem, index) => {
+            {userLogin?.ordersHistory?.map((orderItem, index) => {
               return (
                 <div className="mt-2" key={index}>
                   <hr />

@@ -91,14 +91,14 @@ http.interceptors.response.use(
     return response;
   },
   (err) => {
-    if( err.response.status === 400 || err.response.status === 404){
-      history.push('/')
-      return Promise.reject(err)
+    if (err.response.status === 400 || err.response.status === 404) {
+      history.push("/");
+      return Promise.reject(err);
     }
 
     if (err.response.status === 401 || err.response.status === 403) {
       alert("Token không hợp lệ, vui lòng đăng nhập");
-      history.push('/login');
+      history.push("/login");
       return Promise.reject(err);
     }
   }
